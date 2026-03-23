@@ -67,5 +67,22 @@ public class CerealRunnerTest
 
         assertEquals(16.0, result, 0.0001);
     }
+
+    @Test
+    public void question4_includes_required_validation_check_and_comment() throws Exception
+    {
+        String source = Files.readString(Path.of("src/main/java/CerealRunner.java"));
+
+        assertTrue(source.contains("All-Bran with Extra Fiber"),
+                "question 4 should check All-Bran with Extra Fiber");
+        assertTrue(source.contains("Apple Jacks"),
+                "question 4 should check Apple Jacks");
+        assertTrue(source.contains("Cocoa Puffs"),
+                "question 4 should check Cocoa Puffs");
+
+        assertTrue(
+            source.toLowerCase().contains("/* Question 4 Answer"),
+            "question 4 should include a written comment in CerealRunner.java");
+    }
 }
        
