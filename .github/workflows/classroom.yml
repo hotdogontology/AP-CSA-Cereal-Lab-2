@@ -1,0 +1,67 @@
+name: autograding tests
+'on':
+- push
+- repository_dispatch
+
+permissions:
+  checks: write
+  actions: read
+  contents: read
+
+jobs:
+  run-autograding-tests:
+    runs-on: ubuntu-latest
+    if: github.actor != 'github-classroom[bot]'
+    steps:
+    - name: checkout code
+      uses: actions/checkout@v4
+
+    - name: constructor_and_getters_work
+      id: constructor_and_getters_work
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: constructor_and_getters_work
+        setup-command: mvn -q -DskipTests compile
+        command: mvn -q -Dtest=CerealTest#constructor_and_getters_work test
+        timeout: 20
+        max-score: 10
+
+    - name: toString_contains_expected_fields
+      id: tostring_contains_expected_fields
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: toString_contains_expected_fields
+        setup-command: mvn -q -DskipTests compile
+        command: mvn -q -Dtest=CerealTest#toString_contains_expected_fields test
+        timeout: 20
+        max-score: 10
+
+    - name: runner_creates_same_number_of_records_as_csv
+      id: runner_creates_same_number_of_records_as_csv
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: runner_creates_same_number_of_records_as_csv
+        setup-command: mvn -q -DskipTests compile
+        command: mvn -q -Dtest=CerealRunnerTest#runner_creates_same_number_of_records_as_csv test
+        timeout: 20
+        max-score: 15
+
+    - name: runner_parses_values_correctly_for_a_few_rows
+      id: runner_parses_values_correctly_for_a_few_rows
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: runner_parses_values_correctly_for_a_few_rows
+        setup-command: mvn -q -DskipTests compile
+        command: mvn -q -Dtest=CerealRunnerTest#runner_parses_values_correctly_for_a_few_rows test
+        timeout: 20
+        max-score: 15
+
+    - name: autograding reporter
+      uses: classroom-resources/autograding-grading-reporter@v1
+      env:
+        CONSTRUCTOR_AND_GETTERS_WORK_RESULTS: "${{steps.constructor_and_getters_work.outputs.result}}"
+        TOSTRING_CONTAINS_EXPECTED_FIELDS_RESULTS: "${{steps.tostring_contains_expected_fields.outputs.result}}"
+        RUNNER_CREATES_SAME_NUMBER_OF_RECORDS_AS_CSV_RESULTS: "${{steps.runner_creates_same_number_of_records_as_csv.outputs.result}}"
+        RUNNER_PARSES_VALUES_CORRECTLY_FOR_A_FEW_ROWS_RESULTS: "${{steps.runner_parses_values_correctly_for_a_few_rows.outputs.result}}"
+      with:
+        runners: constructor_and_getters_work,tostring_contains_expected_fields,runner_creates_same_number_of_records_as_csv,runner_parses_values_correctly_for_a_few_rows
