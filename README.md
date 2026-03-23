@@ -91,4 +91,4 @@ Remember to adhere to the GSSM Academic Integrity Policy. Do not copy code from 
 If you have any questions or need assistance, send me an email or come to office hours. 
 
 ## Acknowledgements
-This project has been adapted from the cereal lab available on AP Classroom by College Board.
+This project has been adapted from the cereal lab available on AP Classroom by College Board. ChatGPT helped write `devcontainer.json`, `classroom.yaml`, and `CerealRunnerTests.java`.
