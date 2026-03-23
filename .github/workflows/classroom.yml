@@ -24,7 +24,7 @@ jobs:
         setup-command: mvn -q -DskipTests compile
         command: mvn -q -Dtest=CerealRunnerTest#filterCarbsPerCup_returns_only_cereals_in_inclusive_range test
         timeout: 20
-        max-score: 25
+        max-score: 30
 
     - name: highestPercentFiber_returns_cereal_with_greatest_fiber_per_calorie
       id: highestpercentfiber_returns_cereal_with_greatest_fiber_per_calorie
@@ -34,7 +34,7 @@ jobs:
         setup-command: mvn -q -DskipTests compile
         command: mvn -q -Dtest=CerealRunnerTest#highestPercentFiber_returns_cereal_with_greatest_fiber_per_calorie test
         timeout: 20
-        max-score: 25
+        max-score: 30
 
     - name: findNetCarbsPerCup_computes_carbs_minus_fiber_for_one_cup
       id: findnetcarbspercup_computes_carbs_minus_fiber_for_one_cup
@@ -44,7 +44,7 @@ jobs:
         setup-command: mvn -q -DskipTests compile
         command: mvn -q -Dtest=CerealRunnerTest#findNetCarbsPerCup_computes_carbs_minus_fiber_for_one_cup test
         timeout: 20
-        max-score: 25
+        max-score: 30
 
     - name: question4_includes_required_multiline_comment_answer
       id: question4_includes_required_multiline_comment_answer
@@ -54,7 +54,7 @@ jobs:
         setup-command: mvn -q -DskipTests compile
         command: mvn -q -Dtest=CerealRunnerTest#question4_includes_required_multiline_comment_answer test
         timeout: 20
-        max-score: 25
+        max-score: 10
 
     - name: autograding reporter
       uses: classroom-resources/autograding-grading-reporter@v1
