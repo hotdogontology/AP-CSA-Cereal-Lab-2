@@ -46,11 +46,22 @@ jobs:
         timeout: 20
         max-score: 20
 
+    - name: question4_includes_required_multiline_comment_answer
+      id: question4_includes_required_multiline_comment_answer
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: question4_includes_required_multiline_comment_answer
+        setup-command: mvn -q -DskipTests compile
+        command: mvn -q -Dtest=CerealRunnerTest#question4_includes_required_multiline_comment_answer test
+        timeout: 20
+        max-score: 20
+
     - name: autograding reporter
       uses: classroom-resources/autograding-grading-reporter@v1
       env:
         FILTERCARBSPERCUP_RETURNS_ONLY_CEREALS_IN_INCLUSIVE_RANGE_RESULTS: "${{steps.filtercarbspercup_returns_only_cereals_in_inclusive_range.outputs.result}}"
         HIGHESTPERCENTFIBER_RETURNS_CEREAL_WITH_GREATEST_FIBER_PER_CALORIE_RESULTS: "${{steps.highestpercentfiber_returns_cereal_with_greatest_fiber_per_calorie.outputs.result}}"
         FINDNETCARBSPERCUP_COMPUTES_CARBS_MINUS_FIBER_FOR_ONE_CUP_RESULTS: "${{steps.findnetcarbspercup_computes_carbs_minus_fiber_for_one_cup.outputs.result}}"
+        QUESTION4_INCLUDES_REQUIRED_MULTILINE_COMMENT_ANSWER_RESULTS: "${{steps.question4_includes_required_multiline_comment_answer.outputs.result}}"
       with:
-        runners: filtercarbspercup_returns_only_cereals_in_inclusive_range,highestpercentfiber_returns_cereal_with_greatest_fiber_per_calorie,findnetcarbspercup_computes_carbs_minus_fiber_for_one_cup
+        runners: filtercarbspercup_returns_only_cereals_in_inclusive_range,highestpercentfiber_returns_cereal_with_greatest_fiber_per_calorie,findnetcarbspercup_computes_carbs_minus_fiber_for_one_cup, question4_includes_required_multiline_comment_answer
