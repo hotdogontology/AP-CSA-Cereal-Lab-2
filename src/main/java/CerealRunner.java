@@ -44,7 +44,7 @@ public class CerealRunner
    *  @param: c - Cereal object
    */
     
-   public static double findNetCarbs(Cereal c)
+   public static double findNetCarbsPerCup(Cereal c)
    {
       //Add your solution to Question 3 here.
    }
