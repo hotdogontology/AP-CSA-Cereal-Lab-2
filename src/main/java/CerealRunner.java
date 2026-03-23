@@ -116,7 +116,7 @@ public class CerealRunner
       System.out.println("\n*****Find Net Carbs Results*****");
       Cereal testCereal = new Cereal("Golden Crisp",100,0,11,0.88);
       System.out.println("Expected results: 11.0");
-      System.out.println("Actual results:   " + findNetCarbs(testCereal));
+      System.out.println("Actual results:   " + findNetCarbsPerCup(testCereal));
       
    }
 }
