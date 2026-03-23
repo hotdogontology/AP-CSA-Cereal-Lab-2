@@ -39,7 +39,7 @@ for(Cereal c: cereals) {
 }
 ```
 
-Look at the values that are displayed. One of the values is not valid! Which value seems out of place? What conclusions might you draw about this data set based on your research? Write your answer in the comments of the `CerealRunner.java` file. You **MUST** begin your comment with "/* Question 4 Answer"
+Look at the values that are displayed. One of the values is not valid! Which value seems out of place? What conclusions might you draw about this data set based on your research? Write your answer in the comments of the `CerealRunner.java` file. You **MUST** begin your comment with "Question 4 Answer" as part of a multi-line comment answer.
 
 ## Project Structure
 
