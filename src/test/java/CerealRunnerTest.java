@@ -69,7 +69,7 @@ public class CerealRunnerTest
     }
 
     @Test
-    public void question4_includes_required_validation_check_and_comment() throws Exception
+    public void question4_includes_required_multiline_comment_answer() throws Exception
     {
         String source = Files.readString(Path.of("src/main/java/CerealRunner.java"));
 
