@@ -57,7 +57,7 @@ public class CerealRunner
    //ArrayList of Cereal objects from cerealSubset.csv
    private static ArrayList<Cereal> cereals = new ArrayList<Cereal>(); 
   
-   public CerealRunner3(String fileName)
+   public CerealRunner(String fileName)
    {
       try 
       {
