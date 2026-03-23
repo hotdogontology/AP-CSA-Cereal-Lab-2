@@ -1,67 +1,94 @@
 
-# Cereal Lab 1 - ArrayLists and File Reading
+# Cereal Lab 2 - Cereal Analysis
 
-This project is designed for AP CS-A, focusing on reading in files and using ArrayLists. The lab is based on the Cereal Lab provided by College Board on AP Classroom.
+This project is designed for AP CS-A, focusing on analyzing data that has been processed with Java. The lab is based on the Cereal Lab provided by College Board on AP Classroom.
 
 ## Lab Directions and Prompt
 
-You have created a class from a given description or specification several times. This capability is an important skill, but equally important is the ability to determine which information is essential when creating a class. What is “essential” can vary based on perspective or can be determined by a question being asked or a problem that someone is attempting to solve. This activity will give you an opportunity to practice making this type of determination. Consider the following selection.
+Previously in Part 1 of this lab you created a `Cereal` class to model data pulled from this dataset:
 
 <img width="587" height="397" alt="image" src="https://github.com/user-attachments/assets/16400c15-c49c-4c95-84c5-bf8ec4b546de" />
 
 [https://www.kaggle.com/crawford/80-cereals/version/2#cereal.csv]
 
-This table of cereal data is publicly available on Kaggle.com. Each row in the table is a record representing a different breakfast cereal you would commonly find in the grocery store and contains data about that cereal, including name, type (hot or cold), calories, protein, fat, sodium, fiber, carbohydrates, sugar, potassium, vitamins, shelf, weight, cups, and rating. This table contains more information than we need to answer the questions posed in this activity.
+A stock `Cereal` class has been provided in this project regardless of what you answered previously. You should read and familizarize yourself with it.
 
-You have been given a file called `cerealSubset.csv` that contains the data deemed “essential” for this lab. The file contains **the name, calories, fiber, carbohydrates**, and **cups** for 76 different cereals.  Write the `Cereal` class with appropriate instance variables, a constructor, accessor methods for each instance variable, and a toString() method to display all the data for a Cereal object.
+Now we can analyze the cereal data to answer research questions such as:  
 
-Once you have designed and written the **`Cereal`** class to represent a Cereal object, you will want to write a program to process the data. Processing the data will include reading each data entry from a file. You will create another class, **`CerealRunner`**, to read in a data set of cereal information to analyze the nutrition facts of a group of cereals. The `CerealRunner` class should have a private instance variable to store an ArrayList of Cereal objects. You will use a Scanner object to read the data from `cerealSubset.csv` into a String for each line. You’ll then parse, or split, the data into an array of Strings using the split() method from the String class. You will then use the elements of that array to create Cereal objects and store them into your ArrayList. Recall that the array of Strings must be cast to the data types expected in the Cereal class. When `CerealRunner.java` is run, the output should print “76 records created.”.
+- Which cereals have between 17 and 18 carbohydrates by cup? 
+- Which cereal has the highest percent of fiber per calorie?   
+- How many net carbs are there in a specific cereal?
+
+In this lab you will write and test the three **static** methods to answer those questions.
+
+You will use the `CerealRunner` class, which contains starter code for this activity and a finished `main` method. You will edit the static method bodies at the beginning of this class, but **do not edit the `main` method**. Note, because you are writing static methods that need to access the `ArrayList` of `Cereal` objects, the `CerealRunner` class has a `static ArrayList` of `Cereal` objects.  
+
+1. Write the method `public static ArrayList<Cereal> filterCarbsPerCup(int min, int max)` that returns an `ArrayList` of all cereals that are between `min` and `max` carbohydrates by cup, inclusive. Note that the serving size differs for each cereal, so you cannot simply use the carbohydrates information directly from the data set. You will need to calculate how many servings are in a cup and multiply the carbohydrates by that number (e.g., if a cereal has a serving size of 0.5 cups, there are 2 servings in a cup, so you will need to multiply the carbohydrates by 2 to calculate how many carbohydrates are in a cup). Once your method is completed, you can verify your code by running `CerealRunner.java`. (Not this is **NOT** the same as running tests for your grade.) The expected results and the results of your method will be printed to the console. Compare the two sets of results to validate your code.
+2. Write the method `public static Cereal highestPercentFiber()` that returns the `Cereal` object that has the highest percentage of fiber per calorie. You can calculate the percentage of fiber per calorie by dividing the amount of fiber by the number of calories in a serving size.
+3. Write the method `public static double findNetCarbsPerCup(Cereal c)` that will calculate the difference of the total carbohydrates and fiber in a cup. “Net carbs” is a term used to describe how many carbohydrates are absorbed by the body. While the net carb calculations for whole foods and processed foods are slightly different, for this lab, net carbs are calculated by taking the total amount of carbohydrates (the sum of sugar, starch, and fiber) and subtracting the amount of fiber because fiber is not absorbed by the body.
+4. Data validation is the process of checking the accuracy and quality of data before they are used, imported, or processed. You will now consider the validity of the cereal data you have been provided. Modify the `CerealRunner.java` to add the following lines of code to the main method to test your method that calculates net carbs for the cereals: All-Bran with Extra Fiber, Apple Jacks, and Cocoa Puffs.  
+```
+for(Cereal c: cereals) { 
+   if(c.getName().equals("All-Bran with Extra Fiber") ||   
+      c.getName().equals("Apple Jacks") ||  
+      c.getName().equals("Cocoa Puffs")) 
+   { 
+       System.out.println("\nCereal: " + c.getName() + ", NetCarbs: "    
+                           + findNetCarbs(c)); 
+   } 
+}
+```
+
+Look at the values that are displayed. One of the values is not valid! Which value seems out of place? What conclusions might you draw about this data set based on your research? Write your answer in the comments of the `CerealRunner.java` file. 
 
 ## Project Structure
 
 - **`cerealSubset.csv`**: A file that contains the name, calories, fiber, carbohydrates, and cups for 76 different cereals.  
-- **`Cereal.java`**, **`CerealRunner.java`**: Contains class file stubs. Students are required to complete these classes and the appropriate methods.
-- **`CerealTest.java`**, **`CerealRunnerTest.java`**: JUnit test cases for each method in `Cereal.java` and `CerealRunner.java`. These tests validate the correctness of the implemented methods.
-- **`pom.xml`**: Maven configuration file that manages dependencies and plugins required to build and run the project.
+- **`Cereal.java`**: A complete Cereal class to model cereals from the cereal dataset.
+- **`CerealRunner.java`**: Contains class file stubs. Students are required to complete these classes and the appropriate methods. Some testing code is included. **THIS IS THE FILE YOU EDIT**
+- **`CerealRunnerTest.java`**: JUnit test cases for each method in `CerealRunner.java`. These tests validate the correctness of the implemented methods. **RUN THIS TO SEE YOUR CURRENT GRADE**
+- **`pom.xml`**, **`devcontainer.json`**: JSON file for setting up Codespaces and Maven configuration file that manages dependencies and plugins required to build and run the project. **DO NOT TOUCH THESE**
 
 ## Workflow Instructions
 
-### Accept the Project
+### Option 1: GitHub Codespaces (Recommended)
 
-Use link found in Canvas to accept in GitHub Classroom. You may have to check your GitHub account associated email or the GitHub inbox tray to have access to the assignment.
+1. Click the green **Code** button on this repository
+2. Select the **Codespaces** tab
+3. Click **Create codespace on main**
+4. Wait for the environment to build (~2 minutes the first time)
+5. Start coding in `src/main/java/CerealRunner.java`
 
-### Clone the Repository
+> **Note:** If the Java extension shows errors on first load, press `Cmd+Shift+P` (Mac) or `Ctrl+Shift+P` (Windows) and run **"Developer: Reload Window"**. This is a one-time setup step.
 
-Open the repository in GitHub Codespaces. (Or clone to your local machine and use your preferred IDE.)
+### Option 2: Local Development
 
-### Write the Class Files
+1. Accept the assignment via the GitHub Classroom link
+2. Clone the repository using GitHub Desktop
+3. Open the project in your IDE (VS Code, IntelliJ, or Eclipse)
+4. **Requirements:** Java 17+, Maven 3.x
 
-- Complete the `Cereal.java` class file.
-- Complete the `CerealRunner.java` class file.
+## Running Tests
 
-### Run Tests
+### In VS Code / Codespaces
 
-Run the JUnit tests to verify your implementations
+Click the green play button next to any test method in `Unit4Test.java`, or open the **Testing** sidebar (beaker icon).
 
-### Push Work to the Repository
+### Command Line
 
-When your code passes all tests, Commit and Sync to push your answers to the Repo for submission.
+Run all tests:
+```
+mvn test
+```
+## Autograding
 
-## Grading
-Your grade will be based on the correctness of your implementations as verified by the unit tests. Make sure all methods are completed and that all tests pass.
+Your code is automatically graded when you push to GitHub. Check the **Actions** tab to see your score. Each method is tested independently — you earn points for each method you complete correctly.
 
 ## Honor Code
 Remember to adhere to the GSSM Academic Integrity Policy. Do not copy code from others or AI, and ensure all work is your own.
 
 ## Contact
 If you have any questions or need assistance, send me an email or come to office hours. 
-
-## Prerequisites for Local Work
-
-- Java 17 (or compatible version)
-- Maven 3.x
-
-You can also use Codespaces and the environment will load the required packages automatically upon prompt.
 
 ## Acknowledgements
 This project has been adapted from the cereal lab available on AP Classroom by College Board.
