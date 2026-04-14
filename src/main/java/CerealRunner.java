@@ -38,7 +38,7 @@ public class CerealRunner
    }
   
    
-   /* Questino 3: Write findNetCarbs
+   /* Question 3: Write findNetCarbs
    *  This static method will take in a cereal object and returns 
    *  difference of carbs and fiber for that cereal
    *  @param: c - Cereal object
